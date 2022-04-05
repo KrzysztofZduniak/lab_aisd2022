@@ -27,7 +27,6 @@ def quicksort(A, get_pivot):
 
 
 if __name__ == "__main__":
-    A = [14, 3, 12, 4, 1, 5, 20, 17, 8, 10, 13, 18, 6, 16]
     # A = [7, 2, 5, 4, 6, 3, 8, 1, 9]
     print(quicksort(A, lambda p, r: (p + r) // 2))
     print(quicksort(A, lambda p, r: random.randint(p, r)))
