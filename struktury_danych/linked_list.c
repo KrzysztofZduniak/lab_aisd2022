@@ -39,19 +39,29 @@ Node *new_node(int value) {
   return new_node;
 }
 
-void delete_front(Node **head) {
+int search(Node *head, int value) {
+  Node *ptr = head;
+  int i = 0;
+  if (ptr == NULL) {
+    printf("Empty list\n");
+    return -1;
+  }
+  while (ptr != NULL) {
+    if (ptr->value == value) {
+      printf("FOUND\n");
+    }
+    i++;
+    ptr = ptr->next;
+  }
+  return i;
+}
+
+void delete (Node **head) {
   while ((*head != NULL) && ((*head)->next != NULL)) {
     Node *temp = (*head)->next;
     free(*head);
     *head = temp;
   }
-}
-
-void delete_back(Node *p) {
-  if ((p != NULL) && (p->next != NULL)) {
-    delete_back(p->next);
-  }
-  free(p);
 }
 
 int main(int argc, char *argv[]) {
@@ -64,10 +74,12 @@ int main(int argc, char *argv[]) {
   Node *head = NULL;
   Node *new = NULL;
   for (int i = 0; i < 8; i++) {
+    new = new_node(x[i]);
     insert(&head, new);
   }
-  print_list(head);
-  delete_front(&head);
+  search(head, 7);
+  // print_list(head);
+  delete (&head);
 
   return 0;
 }
