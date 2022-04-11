@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <stdio.h>
 
 typedef struct Node Node;
 struct Node {
@@ -49,7 +48,7 @@ int search(Node *head, int value) {
   }
   while (ptr != NULL) {
     if (ptr->value == value) {
-      printf("FOUND\n");
+      return i;
     }
     i++;
     ptr = ptr->next;
@@ -57,48 +56,10 @@ int search(Node *head, int value) {
   return i;
 }
 
-void delete (Node **head) {
+void delete(Node **head) {
   while ((*head != NULL) && ((*head)->next != NULL)) {
     Node *temp = (*head)->next;
     free(*head);
     *head = temp;
   }
-}
-
-int main(int argc, char *argv[]) {
-  int x[argc - 1];
-  for (int i = 1; i < argc; i++) {
-    sscanf(argv[i], "%d", &x[i - 1]);
-  }
-  FILE *outFile = fopen("linked_list.time", "a");
-  time_t start, end;
-  double create_time, search_time, delete_time;
-  // int x[] = {10, 2, 9, 18, 7, 5, 6, 5};
-  time(&start);
-  Node *head = NULL;
-  Node *new = NULL;
-  for (int i = 0; i < 8; i++) {
-    new = new_node(x[i]);
-    insert(&head, new);
-  }
-  time(&end);
-  create_time = difftime(end, start);
-
-  time(&start);
-  for (int i = 0; i < 8; i++) {
-    search(head, x[i]);
-  }
-  time(&end);
-  search_time = difftime(end, start);
-  // print_list(head);
-  time(&start);
-
-  delete (&head);
-  time(&end);
-  delete_time = difftime(end, start);
-
-  fprintf(outFile, "%lf %lf %lf", create_time, search_time, delete_time);
-  fclose(outFile);
-
-  return 0;
 }
