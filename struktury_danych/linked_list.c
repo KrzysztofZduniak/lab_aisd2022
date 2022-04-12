@@ -6,10 +6,8 @@
 int main(int argc, char *argv[]) {
   FILE *out_f = fopen("wyniki/linked_list.time", "w");
   FILE *in_f = fopen("data", "r");
-  FILE *log_f = fopen("log/linked_list.log", "w");
   int n;
   while (fscanf(in_f, "%d ", &n) != EOF) {
-    fprintf(log_f, "%d\n", n);
     int *x = (int *)malloc(n * sizeof(int));
     for (int i = 0; i < n; i++) {
       int temp;
@@ -43,7 +41,6 @@ int main(int argc, char *argv[]) {
             ((float)delete_c) / CLOCKS_PER_SEC);
     free(x);
   }
-  fclose(log_f);
   fclose(in_f);
   fclose(out_f);
   return 0;
