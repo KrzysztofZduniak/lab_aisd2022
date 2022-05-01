@@ -39,15 +39,25 @@ class ListGraph(Graph):
         return len(self.n_and_e)
 
 class MatrixGraph(Graph):
-    def __init__(self, n):
+    def __init__(self, n, directed=False):
         self.n_and_e = [[0]*n for _ in range(n)]
+        self.directed = directed
+        self.edge_count = 0
         self.size = n
 
     def nodes(self):
         return list(range(len(self.n_and_e)))
 
     def add_egde(self, v, w):
-        self.n_and_e[v][w] = 1
+        if self.directed:
+            self.edge_count += 1
+            self.n_and_e[v][w] = 1
+        else:
+            value = randint(1, 1001)
+            self.n_and_e[v][w] = value
+            self.n_and_e[w][v] = value
+            self.edge_count += 1
+
 
     def successors(self, v):
         s = []
@@ -64,13 +74,12 @@ class MatrixGraph(Graph):
     def number_of_nodes(self):
         return len(self.n_and_e)
 
-    def fulfilment(self, edge_count):
+    def fulfilment(self):
         max_edge_count = (self.size-1)**2 / 2
-        return edge_count / max_edge_count * 100
+        return self.edge_count / max_edge_count * 100
 
     def make_dag(self, pr):
-        edge_count = 0
-        while self.fulfilment(edge_count) < pr:
+        while self.fulfilment() < pr:
             i = randint(0, self.size-1)
             j = randint(i, self.size-1)
             print(i, j)
