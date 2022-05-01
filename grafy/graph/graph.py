@@ -78,13 +78,13 @@ class MatrixGraph(Graph):
         max_edge_count = (self.size-1)**2 / 2
         return self.edge_count / max_edge_count * 100
 
+    def get_random_id(self):
+        i = randint(0, self.size-2)
+        return (i, randint(i+1, self.size-1))
+
     def make_dag(self, pr):
         while self.fulfilment() < pr:
-            i = randint(0, self.size-1)
-            j = randint(i, self.size-1)
-            print(i, j)
+            i, j = self.get_random_id()
             while self.n_and_e[i][j] == 1:
-                i = randint(0, self.size-1)
-                j = randint(i, self.size-1)
+                i, j = self.get_random_id()
             self.add_egde(i, j)
-            edge_count += 1
