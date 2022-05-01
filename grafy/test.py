@@ -25,3 +25,8 @@ test_graph(G)
 G2 = graph.ListGraph(4)
 G2.add_edges_from_list([(1, 2), (2,3), (0,2), (0,3), (1,3)])
 test_graph(G2)
+
+dag = graph.MatrixGraph(100)
+dag.make_dag(60)
+print(*dag.n_and_e)
+
