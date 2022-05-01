@@ -88,3 +88,15 @@ class MatrixGraph(Graph):
             while self.n_and_e[i][j] == 1:
                 i, j = self.get_random_id()
             self.add_egde(i, j)
+
+    def make_for_mst(self, pr):
+        for i in self.nodes():
+            if i == self.size-1:
+                break
+            self.add_egde(i, i+1)
+        while self.fulfilment() < pr:
+            i, j = self.get_random_id()
+            while self.n_and_e[i][j] != 0:
+                i, j = self.get_random_id()
+            self.add_egde(i, j)
+            
