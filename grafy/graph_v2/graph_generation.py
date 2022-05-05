@@ -57,6 +57,21 @@ def sort_top(G):
         sort_top_rec(v)
     return list(reversed(result))
 
+def sort_top2(G):
+    result = []
+    visited = [0] * G.size
+
+    def sort_top_rec(v: int):
+        if visited[v] == 1:
+            return
+        visited[v] = 1
+        for u in G.successors(v):
+            sort_top_rec(u)
+        result.append(v)
+    for v in G.nodes():
+        sort_top_rec(v)
+    return list(reversed(result))
+
 
 def make_undirected_graph(n, pr, t):
     G = nx.fast_gnp_random_graph(n, pr)
