@@ -28,6 +28,25 @@ def hamilton(G):
     return V
 
 
+def hamilton_all(G):
+    solutions = []
+    V = []
+
+    def hamilton_inner(G, v=0):
+        V.append(v)
+        for w, i in enumerate(G[v]):
+            if i == 1 and w not in V:
+                hamilton_inner(G, w)
+
+        if set(V) == set(range(len(G))) and G[0][v] == 1:
+            solutions.append(V.copy())
+        else:
+            V.remove(v)
+
+    hamilton_inner(G)
+    return solutions
+
+
 G = [
     [0, 1, 1, 0, 0, 0],
     [1, 0, 1, 1, 1, 0],
