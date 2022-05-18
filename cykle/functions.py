@@ -1,7 +1,6 @@
 from itertools import cycle
 from algorytmy import euler, hamilton, euler_cycle
 import networkx as nx
-from graph2 import MatrixGraph
 import matplotlib.pyplot as plt
 from time import time
 import os
@@ -9,7 +8,7 @@ import sys
 import random
 import pandas as pd
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(100000)
 
 
 def egdes_reverse(G, a, b, c):
@@ -54,7 +53,7 @@ def measure_time(n, pr, tries, function):
         start = time()
         function(G)
         end = time()
-        s += end+start
+        s += end-start
     return s/tries
 
 

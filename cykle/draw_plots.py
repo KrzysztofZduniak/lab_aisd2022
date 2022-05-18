@@ -1,7 +1,6 @@
 from itertools import cycle
 from algorytmy import euler, hamilton, euler_cycle
 import networkx as nx
-from graph2 import MatrixGraph
 import matplotlib.pyplot as plt
 from time import time
 import os
@@ -10,7 +9,7 @@ import random
 import pandas as pd
 from functions import make_undirected_graph, measure_time, egdes_reverse
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(100000)
 
 
 def draw_plot(nodes, t30, t70, title, start, end):

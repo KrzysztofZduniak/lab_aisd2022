@@ -1,7 +1,7 @@
-from graph2 import MatrixGraph
 import sys
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(100000)
+
 
 def euler(G, C=[], v=0):
     for w, i in enumerate(G[v]):
@@ -13,22 +13,33 @@ def euler(G, C=[], v=0):
 
 
 def euler_cycle(G, v=0):
+    t = 0
     C = []
     visited = set()
 
     def euler_rec(G, v):
-        w_list = []
-        for i in range(len(G[v])):
-            if G[v][i] == 1:
-                w_list.append(i)
-        for w in w_list:
-            if (v, w) in visited:
+        nonlocal t
+        t += 1
+        print(f'{t=}')
+        # w_list = []
+        # for i in range(len(G[v])):
+        for w, x in enumerate(G[v]):
+            if x != 1:
                 continue
+            if v < w:
+                if (v, w) in visited:
+                    continue
+                else:
+                    visited.add((v, w))
             else:
-                visited.add((v, w))
-                euler_rec(G, w)
+                if (w, v) in visited:
+                    continue
+                else:
+                    visited.add((w, v))
+            euler_rec(G, w)
+        C.append(v)
     euler_rec(G, v)
-    C.append(v)
+    return C
 
 
 def hamilton(G):
