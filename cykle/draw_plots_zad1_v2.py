@@ -12,12 +12,12 @@ import pandas as pd
 sys.setrecursionlimit(100000)
 
 
-def draw_plot(nodes, eu, ham, title):
+def draw_plot(nodes_eu, nodes_ham, eu, ham, title):
     plt.figure(figsize=(16, 9))
     plt.xlabel("Number of nodes")
     plt.ylabel("Time [s]")
-    plt.plot(nodes, eu, label="Euler cycle")
-    plt.plot(nodes, ham, label="Hamilton cycle")
+    plt.plot(nodes_eu, eu, label="Euler cycle")
+    plt.plot(nodes_ham, ham, label="Hamilton cycle")
     plt.legend(loc="upper left")
     plt.title(
         f"Euler and first Hamilton cycle: {title}%")
@@ -32,7 +32,7 @@ def draw_plot(nodes, eu, ham, title):
 eu = pd.read_csv('data_euler.csv')
 ham = pd.read_csv('data_hamilton.csv')
 
-draw_plot(eu["points"], eu["30"], ham["30"],
+draw_plot(eu["points"], ham["points"], eu["30"], ham["30"],
           "30")
-draw_plot(eu["points"], eu["70"], ham["70"],
+draw_plot(eu["points"],ham["points"], eu["70"], ham["70"],
           "70")
