@@ -35,7 +35,7 @@ sys.setrecursionlimit(100000)
 #     return G2
 
 
-random.seed(7)
+#random.seed(7)
 print("------------------------------------------------------\nEULER CYCLE\n------------------------------------------------------")
 start_nodes = int(input("Start nodes: "))
 steps = int(input("Steps: "))

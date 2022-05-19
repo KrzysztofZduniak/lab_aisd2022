@@ -13,14 +13,14 @@ def euler(G, C=[], v=0):
 
 
 def euler_cycle(G, v=0):
-    t = 0
+    #t = 0
     C = []
     visited = set()
 
     def euler_rec(G, v):
-        nonlocal t
-        t += 1
-        print(f'{t=}')
+        # nonlocal t
+        # t += 1
+        # print(f'{t=}')
         # w_list = []
         # for i in range(len(G[v])):
         for w, x in enumerate(G[v]):
@@ -45,11 +45,11 @@ def euler_cycle(G, v=0):
 def hamilton(G):
     V = []
 
-    def hamilton_inner(G, v=0):
+    def hamilton_inner(v=0):
         V.append(v)
         for w, i in enumerate(G[v]):
             if i == 1 and w not in V:
-                if hamilton_inner(G, w):
+                if hamilton_inner(w):
                     return True
 
         if len(V) == len(G) and G[0][v] == 1:
@@ -58,10 +58,27 @@ def hamilton(G):
             V.remove(v)
         return False
 
-    if hamilton_inner(G):
+    if hamilton_inner():
         return V
     else:
         return None
+
+def hamilton_all(G):
+    V = []
+    cycles = []
+
+    def hamilton_inner(v=0):
+        V.append(v)
+        for w, i in enumerate(G[v]):
+            if i == 1 and w not in V:
+                hamilton_inner(w)
+
+        if len(V) == len(G) and G[0][v] == 1:
+            cycles.append(V[:])
+        V.pop()
+
+    hamilton_inner()
+    return cycles
 
 # G = [
 #     [0, 1, 1, 0, 0, 0],
