@@ -29,8 +29,8 @@ def draw_plot(nodes_eu, nodes_ham, eu, ham, title):
     plt.clf()
 
 
-eu = pd.read_csv('data_euler.csv')
-ham = pd.read_csv('data_hamilton.csv')
+eu = pd.read_csv(os.path.join("wykresy", "zadanie_1", "data_euler.csv"))
+ham = pd.read_csv(os.path.join("wykresy", "zadanie_1", "data_hamilton.csv"))
 
 draw_plot(eu["points"], ham["points"], eu["30"], ham["30"],
           "30")

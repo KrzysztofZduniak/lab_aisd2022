@@ -48,7 +48,8 @@ def make_undirected_graph(n, pr):
 
 def measure_time(n, pr, tries, function):
     s = 0
-    for _ in range(tries):
+    for i in range(tries):
+        print(f"{n} Nodes   Attempt {i+1}/{tries}")
         G = make_undirected_graph(n, pr)
         start = time()
         function(G)

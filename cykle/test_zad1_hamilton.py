@@ -61,7 +61,7 @@ for point in x_axis:
     y_axis_70.append(measure_time(point, pr, tries, hamilton))
 
 df = pd.DataFrame({"points":x_axis, "30": y_axis_30,"70": y_axis_70})
-df.to_csv(os.path.join("wykresy", "zadanie 1", "data_hamilton.csv"))
+df.to_csv(os.path.join("wykresy", "zadanie_1", "data_hamilton.csv"))
 
 
 # draw_plot(x_axis, y_axis_euler_30, y_axis_hamilton_30,
