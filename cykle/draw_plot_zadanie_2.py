@@ -30,7 +30,7 @@ def draw_plot(nodes, t50, title):
 
 
 #eu = pd.read_csv(os.path.join("wykresy","zadanie 1","data_euler.csv"))
-ham = pd.read_csv(os.path.join("wykresy","zadanie 2","data_hamilton_all.csv"))
+ham = pd.read_csv(os.path.join("wykresy","zadanie_2","data_hamilton_all.csv"))
 
 draw_plot(ham["points"], ham["50"],
         "Hamilton")

@@ -61,7 +61,8 @@ def hamilton(G):
     if hamilton_inner():
         return V
     else:
-        return None
+        print("ERROR")
+        quit()
 
 def hamilton_all(G):
     V = []

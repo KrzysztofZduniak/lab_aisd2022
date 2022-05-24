@@ -28,22 +28,34 @@ def make_undirected_graph(n, pr):
     G = [[0]*n for _ in range(n)]
     cycle = list(range(n))
     random.shuffle(cycle)
-    for v, w in zip(cycle[:-1], cycle[1:]):
+    z_l = list(zip(cycle[:-1], cycle[1:]))
+    for item in z_l:
+        v = item[0]
+        w = item[1]
         G[v][w] = 1
         G[w][v] = 1
     G[cycle[-1]][cycle[0]] = 1
     G[cycle[0]][cycle[-1]] = 1
+    z_l.append((cycle[-1], cycle[0]))
     current_edges = n
     expected_edges = pr*full_edges
     while current_edges < expected_edges:
         a, b, c = random.sample(cycle, 3)
+        if check_graph(z_l, a, b, c):
+            continue
         s = G[a][b] + G[a][c] + G[b][c]
         if s > 1:
             continue
         else:
             egdes_reverse(G, a, b, c)
-        current_edges += 3-s
+            current_edges += 3-s
     return G
+
+
+def check_graph(z_l, a, b, c):
+    if ((a, b) in z_l) or ((a, c) in z_l) or ((b, c) in z_l) or ((b, a) in z_l) or ((c, a) in z_l) or ((c, b) in z_l):
+        return True
+    return False
 
 
 def measure_time(n, pr, tries, function):

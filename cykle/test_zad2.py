@@ -35,4 +35,4 @@ for point in x_axis:
     # y_axis_70.append(measure_time(point, pr, tries, hamilton_all))
 
 df = pd.DataFrame({"points": x_axis, "50": y_axis_50})
-df.to_csv(os.path.join("wykresy", "zadanie 2", "data_hamilton_all.csv"))
+df.to_csv(os.path.join("wykresy", "zadanie_2", "data_hamilton_all.csv"))
