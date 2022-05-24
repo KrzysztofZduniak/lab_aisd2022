@@ -52,16 +52,16 @@ for point in x_axis:
     print(f'Step {st}/{steps} {point} nodes {tries} tries')
     st += 1
 
-    # pr = 0.3
-    # y_axis_30.append(measure_time(point, pr, tries, hamilton))
+    pr = 0.3
+    y_axis_30.append(measure_time(point, pr, tries, hamilton))
     #y_axis_hamilton_30.append(measure_time(point, pr, tries, hamilton))
 
     pr = 0.7
     #y_axis_euler_70.append(measure_time(point, pr, tries, euler_cycle))
     y_axis_70.append(measure_time(point, pr, tries, hamilton))
 
-#df = pd.DataFrame({"points":x_axis, "30": y_axis_30,"70": y_axis_70})
-df = pd.DataFrame({"points":x_axis, "30": x_axis,"70": y_axis_70})
+df = pd.DataFrame({"points":x_axis, "30": y_axis_30,"70": y_axis_70})
+# df = pd.DataFrame({"points":x_axis, "30": x_axis,"70": y_axis_70})
 df.to_csv(os.path.join("wykresy", "zadanie_1", "data_hamilton.csv"))
 
 
