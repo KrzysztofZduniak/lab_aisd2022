@@ -1,21 +1,10 @@
-from class_item import Item
-import random
+from time import time
 
 
-def dynamic_knapsack(
-    number_of_items, capacity, end_range_of_radnomization, all_items=[]
-):
+def dynamic_knapsack(number_of_items, capacity, all_items):
     # wydaje mi się, że generowanie danych wejścioweych
     # trzeba robić poza funkcja, ale zostawiłem też tutaj
     # do debugowania
-    if len(all_items) == 0:
-        all_items = [
-            Item(
-                random.randint(1, end_range_of_radnomization),
-                random.randint(1, end_range_of_radnomization),
-            )
-            for _ in range(number_of_items)
-        ]
     tb = [[0 for _ in range(capacity + 1)] for _ in range(number_of_items + 1)]
     # uzupełnianie tablicy
     for i in range(1, number_of_items + 1):
@@ -38,6 +27,16 @@ def dynamic_knapsack(
             result.append(i)
             i -= 1
     return result
+
+
+def measure_time(capacity, tries, items=[]):
+    s = 0
+    for _ in range(tries):
+        start = time()
+        dynamic_knapsack(len(items), capacity, items)
+        end = time()
+        s += end - start
+    return s / tries
 
 
 def print_tb(tb):
