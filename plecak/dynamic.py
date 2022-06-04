@@ -8,8 +8,8 @@ def dynamic_knapsack(number_of_items, capacity, all_items):
     tb = [[0 for _ in range(capacity + 1)] for _ in range(number_of_items + 1)]
     # uzupełnianie tablicy
     for i in range(1, number_of_items + 1):
+        w_i = all_items[i - 1].weight
         for j in range(1, capacity + 1):
-            w_i = all_items[i - 1].weight
             if w_i > j:
                 tb[i][j] = tb[i - 1][j]
                 continue
@@ -18,7 +18,7 @@ def dynamic_knapsack(number_of_items, capacity, all_items):
     result = []
     i = number_of_items
     j = capacity
-    while j > 0 and i > 0:
+    while tb[i][j] > 0:
         if tb[i][j] == tb[i - 1][j]:
             i -= 1
         else:
