@@ -22,12 +22,12 @@ def draw_plot_variable_items(x_axis, y_axis_greedy, y_axis_dynamic):
 
 def draw_plot_variable_capacity(x_axis, y_axis_greedy, y_axis_dynamic):
     plt.figure(figsize=(16, 9))
-    plt.xlabel("Number of items")
+    plt.xlabel("Capacity")
     plt.ylabel("Time [s]")
     plt.plot(x_axis, y_axis_greedy, label="Greedy")
     plt.plot(x_axis, y_axis_dynamic, label="Dynamic")
     plt.legend(loc="upper left")
-    plt.title("Const capacity")
+    plt.title("Const items")
     os.makedirs(os.path.join("plots", "items_const"), exist_ok=True)
     plt.savefig(os.path.join("plots", "items_const", "lin_const_items.png"))
     plt.yscale("log")

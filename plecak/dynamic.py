@@ -1,6 +1,7 @@
 import imp
 from time import time
 from class_item import Item
+import random
 
 
 def dynamic_knapsack(number_of_items, capacity, all_items):
@@ -24,22 +25,28 @@ def dynamic_knapsack(number_of_items, capacity, all_items):
         if tb[i][j] == tb[i - 1][j]:
             i -= 1
         else:
-            tb[i][j] = tb[i][j] - all_items[i - 1].value
+            # tb[i][j] = tb[i][j] - all_items[i - 1].value
             j -= all_items[i - 1].weight
-            result.append(i)
+            result.append(all_items[i-1])
             i -= 1
-    return result
-
-
-def measure_time(capacity, tries, items=[]):
     s = 0
+    for item in result:
+        s+= item.value
+    return (s, result)
+
+
+def dynamic_measure_time(capacity, tries, number_of_items, end_range):
+    s = 0
+    r = 0
     for i in range(tries):
         print(f"{i+1}/{tries} attempt")
+        items = [Item(random.randint(1, end_range), random.randint(
+        1, end_range)) for _ in range(number_of_items)]
         start = time()
-        dynamic_knapsack(len(items), capacity, items)
+        r += dynamic_knapsack(len(items), capacity, items)[0]
         end = time()
         s += end - start
-    return s / tries
+    return (r, s / tries)
 
 
 def print_tb(tb):

@@ -3,7 +3,7 @@ from class_item import Item
 from time import time
 
 
-def greedy_knapsack(all_items ,number_of_items, capacity, end_range_of_radnomization):
+def greedy_knapsack(all_items ,number_of_items, capacity):
     # all_items = [Item(random.randint(1, end_range_of_radnomization),
     #                   random.randint(1, end_range_of_radnomization)) for _ in range(number_of_items)]
     all_items.sort(key=lambda x: x.profit, reverse= True)
@@ -12,12 +12,15 @@ def greedy_knapsack(all_items ,number_of_items, capacity, end_range_of_radnomiza
     i = 0
     while remaining_capacity > 0:
         if all_items[i].weight <= remaining_capacity:
-            items_into_knapsack.append((all_items[i].value, all_items[i].weight))
+            items_into_knapsack.append(all_items[i])
             remaining_capacity -= all_items[i].weight
         i += 1
         if i == number_of_items - 1:
             break
-    return items_into_knapsack
+    s = 0
+    for item in items_into_knapsack:
+        s+= item.value
+    return (s, items_into_knapsack)
 
 def greedy_const(all_items,number_of_items, capacity):
     items_into_knapsack = []
@@ -30,29 +33,38 @@ def greedy_const(all_items,number_of_items, capacity):
         i += 1
         if i == number_of_items - 1:
             break
-    return items_into_knapsack
-
-
-def measure_time_for_greedy(a, n, c, r, tries):
     s = 0
+    for item in items_into_knapsack:
+        s+= item.value
+    return (s, items_into_knapsack)
+
+
+def greedy_measure_time_for_const_cap(n, c, end_range, tries):
+    s = 0
+    r = 0
     for i in range(tries):
         print(f"{n} items {c} capacity {i+1}/{tries} attempt")
+        a = [Item(random.randint(1, end_range), random.randint(
+        1, end_range)) for _ in range(n)]
         start = time()
-        greedy_knapsack(a, n, c, r)
+        r += greedy_knapsack(a, n, c, r)[0]
         end = time()
         s += end-start
-    return s/tries
+    return (r, s/tries)
 
 
-def measure_time_const_items(all, n, c, tries):
+def greedy_measure_time_for_const_it(n, c, tries, end_range):
     s = 0
+    r = 0
     for i in range(tries):
         print(f"{n} items {c} capacity {i+1}/{tries} attempt")
+        all = [Item(random.randint(1, end_range), random.randint(
+        1, end_range)) for _ in range(n)]
         start = time()
-        greedy_const(all, n, c)
+        r += greedy_const(all, n, c)[0]
         end = time()
         s += end-start
-    return s/tries
+    return (r, s/tries)
 
 
 if __name__ == "__main__":
