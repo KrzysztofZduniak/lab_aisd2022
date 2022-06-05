@@ -3,9 +3,9 @@ from class_item import Item
 from time import time
 
 
-def greedy_knapsack(number_of_items, capacity, end_range_of_radnomization):
-    all_items = [Item(random.randint(1, end_range_of_radnomization),
-                      random.randint(1, end_range_of_radnomization)) for _ in range(number_of_items)]
+def greedy_knapsack(all_items ,number_of_items, capacity, end_range_of_radnomization):
+    # all_items = [Item(random.randint(1, end_range_of_radnomization),
+    #                   random.randint(1, end_range_of_radnomization)) for _ in range(number_of_items)]
     all_items.sort(key=lambda x: x.profit, reverse= True)
     items_into_knapsack = []
     remaining_capacity = capacity
@@ -33,12 +33,12 @@ def greedy_const(all_items,number_of_items, capacity):
     return items_into_knapsack
 
 
-def measure_time_for_greedy(n, c, r, tries):
+def measure_time_for_greedy(a, n, c, r, tries):
     s = 0
     for i in range(tries):
         print(f"{n} items {c} capacity {i+1}/{tries} attempt")
         start = time()
-        greedy_knapsack(n, c, r)
+        greedy_knapsack(a, n, c, r)
         end = time()
         s += end-start
     return s/tries

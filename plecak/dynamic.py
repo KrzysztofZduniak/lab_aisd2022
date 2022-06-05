@@ -1,4 +1,6 @@
+import imp
 from time import time
+from class_item import Item
 
 
 def dynamic_knapsack(number_of_items, capacity, all_items):
@@ -31,7 +33,8 @@ def dynamic_knapsack(number_of_items, capacity, all_items):
 
 def measure_time(capacity, tries, items=[]):
     s = 0
-    for _ in range(tries):
+    for i in range(tries):
+        print(f"{i+1}/{tries} attempt")
         start = time()
         dynamic_knapsack(len(items), capacity, items)
         end = time()

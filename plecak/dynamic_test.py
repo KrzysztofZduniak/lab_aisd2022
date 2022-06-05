@@ -49,7 +49,7 @@ if test == 2:
 y_axis = []
 st = 1
 for point in x_axis:
-    print(f"Step {st}/{steps} {tries} tries {point=}")
+    print(f"Step {st}/{steps} {tries} tries {point=} attempt")
     st += 1
     if test == 1:
         all_items = [
@@ -65,7 +65,7 @@ for point in x_axis:
 
 if test == 1:
     df = pd.DataFrame({"points": x_axis, "time": y_axis})
-    df.to_csv(os.path.join("wykresy", "dynamic", "dynamic_with_variable_items.csv"))
+    df.to_csv(os.path.join("dynamic", "dynamic_with_variable_items.csv"))
 else:
     df = pd.DataFrame({"points": x_axis, "time": y_axis})
-    df.to_csv(os.path.join("wykresy", "dynamic", "dynamic_with_variable_capacity.csv"))
+    df.to_csv(os.path.join("dynamic", "dynamic_with_variable_capacity.csv"))

@@ -45,7 +45,12 @@ for point in x_axis:
     print(f'Step {st}/{steps} {tries} tries {point=}')
     st += 1
     if test == 1:
-        y_axis.append(measure_time_for_greedy(
+        all_items = [
+            Item(
+                random.randint(1, end_range_of_radnomization),
+                random.randint(1, end_range_of_radnomization),)
+                for _ in range(point)]
+        y_axis.append(measure_time_for_greedy(all_items,
             point, capacity, end_range_of_radnomization, tries))
     else:
         y_axis.append(measure_time_const_items(
@@ -53,9 +58,9 @@ for point in x_axis:
 
 if test == 1:
     df = pd.DataFrame({"points": x_axis, "time": y_axis})
-    df.to_csv(os.path.join("wykresy", "greedy",
+    df.to_csv(os.path.join("greedy",
               "greedy_with_variable_items.csv"))
 else:
     df = pd.DataFrame({"points": x_axis, "time": y_axis})
-    df.to_csv(os.path.join("wykresy", "greedy",
+    df.to_csv(os.path.join("greedy",
               "greedy_with_variable_capacity.csv"))
